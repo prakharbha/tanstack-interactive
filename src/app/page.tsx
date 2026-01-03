@@ -108,54 +108,53 @@ export async function POST(request: Request) {
                     {messages.map((message) => (
                         <div
                             key={message.id}
-                            className={\`flex \${message.role === 'user' ? 'justify-end' : 'justify-start'}\`}
-            >
-                    <div
-                        className={\`max-w-[80%] rounded-xl px-4 py-2 \${
-                        message.role === 'user'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-slate-700 text-slate-100'
-                    }\`}
-              >
-                    {message.content}
+                            className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                        >
+                            <div
+                                className={`max-w-[80%] rounded-xl px-4 py-2 ${message.role === 'user'
+                                        ? 'bg-blue-600 text-white'
+                                        : 'bg-slate-700 text-slate-100'
+                                    }`}
+                            >
+                                {message.content}
+                            </div>
+                        </div>
+                    ))}
+                    {isLoading && (
+                        <div className="flex justify-start">
+                            <div className="bg-slate-700 rounded-xl px-4 py-2 text-slate-400">
+                                Thinking...
+                            </div>
+                        </div>
+                    )}
                 </div>
-            </div>
-          ))}
-            {isLoading && (
-                <div className="flex justify-start">
-                    <div className="bg-slate-700 rounded-xl px-4 py-2 text-slate-400">
-                        Thinking...
+
+                {/* Input */}
+                <form onSubmit={handleSubmit} className="p-4 border-t border-slate-700">
+                    <div className="flex gap-2">
+                        <input
+                            type="text"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            placeholder="Type a message..."
+                            className="flex-1 px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                            disabled={isLoading}
+                        />
+                        <button
+                            type="submit"
+                            disabled={!input.trim() || isLoading}
+                            className="px-6 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50 hover:bg-blue-700 transition-colors"
+                        >
+                            Send
+                        </button>
                     </div>
-                </div>
-            )}
-        </div>
+                </form>
+            </div >
 
-        {/* Input */ }
-    <form onSubmit={handleSubmit} className="p-4 border-t border-slate-700">
-        <div className="flex gap-2">
-            <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Type a message..."
-                className="flex-1 px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
-                disabled={isLoading}
-            />
-            <button
-                type="submit"
-                disabled={!input.trim() || isLoading}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50 hover:bg-blue-700 transition-colors"
-            >
-                Send
-            </button>
-        </div>
-    </form>
-      </div >
-
-        {/* Note */ }
-        < p className = "text-center text-slate-500 text-sm mt-6" >
-            Note: This demo uses a mock API.Add your OpenAI API key to.env.local to enable real responses.
-      </p >
-    </div >
-  )
+            {/* Note */}
+            < p className="text-center text-slate-500 text-sm mt-6" >
+                Note: This demo uses a mock API.Add your OpenAI API key to.env.local to enable real responses.
+            </p >
+        </div >
+    )
 }

@@ -66,64 +66,63 @@ const result = await chat({
                     <button
                         key={provider.id}
                         onClick={() => setSelectedProvider(provider.id)}
-                        className={\`p-4 rounded-xl border-2 transition-all \${
-                    selectedProvider === provider.id
-                        ?\`\${provider.color} border-white\`
-                : 'bg-slate-800 border-slate-700 hover:border-slate-500'
-            }\`}
-          >
-                <div className="font-bold text-white">{provider.name}</div>
-                <div className="text-sm text-slate-300">{provider.model}</div>
-            </button>
-        ))}
-        </div>
+                        className={`p-4 rounded-xl border-2 transition-all ${selectedProvider === provider.id
+                                ? `${provider.color} border-white`
+                                : 'bg-slate-800 border-slate-700 hover:border-slate-500'
+                            }`}
+                    >
+                        <div className="font-bold text-white">{provider.name}</div>
+                        <div className="text-sm text-slate-300">{provider.model}</div>
+                    </button>
+                ))}
+            </div>
 
-      {/* Code Example */ }
-    <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
-        <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-white">
-                Using {providers.find(p => p.id === selectedProvider)?.name}
-            </h3>
-            <span className="text-sm text-slate-400">
-                Just change the adapter import!
-            </span>
-        </div>
-        <pre className="text-sm overflow-x-auto">
-            <code className="text-green-400">{codeExamples[selectedProvider]}</code>
-        </pre>
-    </div>
+            {/* Code Example */}
+            <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
+                <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-bold text-white">
+                        Using {providers.find(p => p.id === selectedProvider)?.name}
+                    </h3>
+                    <span className="text-sm text-slate-400">
+                        Just change the adapter import!
+                    </span>
+                </div>
+                <pre className="text-sm overflow-x-auto">
+                    <code className="text-green-400">{codeExamples[selectedProvider]}</code>
+                </pre>
+            </div>
 
-    {/* Key Point */ }
-    <div className="mt-8 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-l-4 border-blue-500 p-6 rounded-r-xl">
-        <h3 className="text-lg font-bold text-white mb-2">💡 Key Insight</h3>
-        <p className="text-slate-300">
-            Notice how the <code className="bg-slate-700 px-2 py-0.5 rounded">chat()</code> call
-            stays exactly the same. Only the <code className="bg-slate-700 px-2 py-0.5 rounded">adapter</code>
-            changes. Your tools, your logic, your tests - they all work across providers.
-        </p>
-    </div>
+            {/* Key Point */}
+            <div className="mt-8 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-l-4 border-blue-500 p-6 rounded-r-xl">
+                <h3 className="text-lg font-bold text-white mb-2">💡 Key Insight</h3>
+                <p className="text-slate-300">
+                    Notice how the <code className="bg-slate-700 px-2 py-0.5 rounded">chat()</code> call
+                    stays exactly the same. Only the <code className="bg-slate-700 px-2 py-0.5 rounded">adapter</code>
+                    changes. Your tools, your logic, your tests - they all work across providers.
+                </p>
+            </div>
 
-    {/* When to Use */ }
-    <div className="mt-8 grid md:grid-cols-2 gap-6">
-        <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
-            <h3 className="text-lg font-bold text-white mb-3">🚀 When to Switch Providers</h3>
-            <ul className="space-y-2 text-slate-300">
-                <li>• GPT-4 is too slow? Try Claude 3.5 Sonnet</li>
-                <li>• Need cheaper inference? Use Gemini Flash</li>
-                <li>• Want local/private? Spin up Ollama</li>
-                <li>• API down? Fallback to another provider</li>
-            </ul>
+            {/* When to Use */}
+            <div className="mt-8 grid md:grid-cols-2 gap-6">
+                <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
+                    <h3 className="text-lg font-bold text-white mb-3">🚀 When to Switch Providers</h3>
+                    <ul className="space-y-2 text-slate-300">
+                        <li>• GPT-4 is too slow? Try Claude 3.5 Sonnet</li>
+                        <li>• Need cheaper inference? Use Gemini Flash</li>
+                        <li>• Want local/private? Spin up Ollama</li>
+                        <li>• API down? Fallback to another provider</li>
+                    </ul>
+                </div>
+                <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
+                    <h3 className="text-lg font-bold text-white mb-3">✅ What Stays the Same</h3>
+                    <ul className="space-y-2 text-slate-300">
+                        <li>• All your tool definitions</li>
+                        <li>• Your streaming logic</li>
+                        <li>• Type safety with Zod schemas</li>
+                        <li>• Client-side hooks (useChat)</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
-            <h3 className="text-lg font-bold text-white mb-3">✅ What Stays the Same</h3>
-            <ul className="space-y-2 text-slate-300">
-                <li>• All your tool definitions</li>
-                <li>• Your streaming logic</li>
-                <li>• Type safety with Zod schemas</li>
-                <li>• Client-side hooks (useChat)</li>
-            </ul>
-        </div>
-    </div>
-    </div >
-  )
+    )
 }
